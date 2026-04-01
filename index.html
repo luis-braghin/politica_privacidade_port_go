@@ -26,12 +26,14 @@
       border-radius: 4px;
       margin: 16px 0;
     }
+    a { color: #0071e3; text-decoration: none; }
+    a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
 
   <h1>Política de Privacidade</h1>
-  <p class="updated">Última atualização: 25 de fevereiro de 2026</p>
+  <p class="updated">Última atualização: 1 de abril de 2026</p>
 
   <p>O <strong>Portaria Go</strong> é um sistema de gestão de portaria para condomínios residenciais. Esta política descreve como coletamos, usamos e protegemos os dados dos usuários.</p>
 
@@ -40,50 +42,83 @@
   <ul>
     <li><strong>Nome</strong> – para identificar o morador no sistema de notificações.</li>
     <li><strong>Número de telefone</strong> – para envio de notificações via WhatsApp sobre entregas e comunicados do condomínio.</li>
+    <li><strong>Apartamento e torre</strong> – para vincular o morador à unidade residencial.</li>
+    <li><strong>Token de notificação push (FCM)</strong> – gerado automaticamente pelo dispositivo para receber notificações push de entregas e interfone digital.</li>
   </ul>
-  <p>Esses dados são fornecidos voluntariamente pelo próprio usuário durante o cadastro.</p>
+  <p>Esses dados são fornecidos voluntariamente pelo próprio usuário durante o cadastro ou coletados automaticamente pelo dispositivo (token push).</p>
 
   <h2>2. Uso dos Dados</h2>
   <p>Os dados coletados são utilizados exclusivamente para:</p>
   <ul>
     <li>Enviar notificações de entregas e encomendas via WhatsApp.</li>
     <li>Enviar comunicados oficiais do condomínio.</li>
+    <li>Enviar notificações push de interfone digital (Firebase Cloud Messaging).</li>
     <li>Identificar o morador no painel interno da portaria.</li>
   </ul>
-  <p>Não utilizamos os dados para fins de publicidade, rastreamento ou qualquer outra finalidade além das descritas acima.</p>
+  <p>Não utilizamos os dados para fins de publicidade, rastreamento ou qualquer outra finalidade além das descritas acima. O app não exibe anúncios e não rastreia usuários entre aplicativos.</p>
 
   <h2>3. Assistente Virtual (IA)</h2>
   <div class="highlight">
-    <p>O app inclui um assistente virtual chamado <strong>"ChatGPT do Imperatriz"</strong>, que responde perguntas dos moradores sobre as regras e regulamentos do condomínio.</p>
-    <p><strong>Como funciona:</strong> quando o usuário digita uma pergunta, apenas o texto da pergunta é enviado à API da Anthropic (Claude) para processamento. Nenhum dado pessoal (nome, telefone, apartamento ou qualquer informação de identificação) é transmitido junto com a pergunta.</p>
-    <p><strong>Terceiro envolvido:</strong> Anthropic, PBC – <a href="https://www.anthropic.com/privacy">https://www.anthropic.com/privacy</a></p>
+    <p>O app inclui um assistente virtual que responde perguntas dos moradores sobre as regras e regulamentos do condomínio.</p>
+    <p><strong>Como funciona:</strong> quando o usuário digita uma pergunta, apenas o texto da pergunta é processado. Os documentos do condomínio são indexados via embeddings (OpenAI) para busca semântica, e a resposta é gerada pela Anthropic (Claude AI). Nenhum dado pessoal (nome, telefone, apartamento ou qualquer informação de identificação) é transmitido junto com a pergunta.</p>
+    <p><strong>Terceiros envolvidos:</strong></p>
+    <ul>
+      <li>OpenAI – embeddings para busca semântica: <a href="https://openai.com/privacy">https://openai.com/privacy</a></li>
+      <li>Anthropic, PBC – geração de respostas: <a href="https://www.anthropic.com/privacy">https://www.anthropic.com/privacy</a></li>
+    </ul>
     <p>As perguntas não são armazenadas pelo nosso sistema após o processamento.</p>
   </div>
 
-  <h2>4. Compartilhamento de Dados</h2>
+  <h2>4. Notificações Push</h2>
+  <p>O app utiliza <strong>Firebase Cloud Messaging (FCM)</strong> para enviar notificações push de entregas e interfone digital. Um token de identificação do dispositivo é armazenado no nosso servidor para possibilitar o envio. Este token não contém dados pessoais e pode ser revogado a qualquer momento desinstalando o app.</p>
+  <p><strong>Terceiro envolvido:</strong> Google Firebase – <a href="https://firebase.google.com/support/privacy">https://firebase.google.com/support/privacy</a></p>
+
+  <h2>5. Compartilhamento de Dados</h2>
   <p>Os dados pessoais (nome e telefone) <strong>não são compartilhados</strong> com terceiros, exceto:</p>
   <ul>
     <li><strong>Evolution API / WhatsApp</strong> – para envio das mensagens de notificação ao número cadastrado pelo próprio usuário.</li>
+    <li><strong>Firebase Cloud Messaging (Google)</strong> – para envio de notificações push (apenas o token do dispositivo, sem dados pessoais).</li>
   </ul>
   <p>Não vendemos, alugamos ou comercializamos dados de usuários.</p>
 
-  <h2>5. Armazenamento</h2>
-  <p>Os dados são armazenados em planilhas Google Sheets sob controle exclusivo do administrador do condomínio. O acesso é restrito à equipe da portaria e à administração.</p>
+  <h2>6. Armazenamento</h2>
+  <p>Os dados são armazenados em banco de dados PostgreSQL gerenciado pelo <strong>Supabase</strong> (infraestrutura em nuvem com criptografia em repouso e em trânsito). O acesso é restrito à equipe da portaria e à administração do condomínio, protegido por autenticação e políticas de segurança em nível de linha (Row Level Security).</p>
 
-  <h2>6. Direitos do Usuário</h2>
+  <h2>7. Exclusão de Conta e Dados</h2>
+  <p>O usuário pode solicitar a exclusão completa de sua conta e dados pessoais a qualquer momento:</p>
+  <ul>
+    <li>Enviando um e-mail para <a href="mailto:contato@portariago.app">contato@portariago.app</a> com nome, telefone e condomínio.</li>
+    <li>Ou solicitando diretamente ao administrador do condomínio pelo app.</li>
+  </ul>
+  <p>Ao solicitar a exclusão:</p>
+  <ul>
+    <li>A conta será desativada em até 7 dias úteis.</li>
+    <li>Todos os dados pessoais (nome, telefone, token push, credenciais, preferências) serão removidos.</li>
+    <li>Registros históricos de notificações podem ser mantidos de forma anonimizada por até 12 meses para fins de auditoria do condomínio.</li>
+  </ul>
+  <p>Para mais detalhes, acesse: <a href="https://portariago.vercel.app/exclusao-conta.html">Página de exclusão de conta</a>.</p>
+
+  <h2>8. Direitos do Usuário</h2>
   <p>O usuário pode, a qualquer momento:</p>
   <ul>
-    <li>Solicitar a exclusão de seus dados entrando em contato com a administração do condomínio.</li>
+    <li>Solicitar a exclusão completa de seus dados (veja seção 7).</li>
     <li>Atualizar seu número de telefone ou preferências de notificação.</li>
+    <li>Revogar permissões de notificação push nas configurações do dispositivo.</li>
   </ul>
 
-  <h2>7. Segurança</h2>
-  <p>Adotamos medidas técnicas e organizacionais para proteger os dados contra acesso não autorizado, perda ou alteração indevida.</p>
+  <h2>9. Segurança</h2>
+  <p>Adotamos medidas técnicas e organizacionais para proteger os dados contra acesso não autorizado, perda ou alteração indevida, incluindo:</p>
+  <ul>
+    <li>Criptografia em trânsito (HTTPS/TLS) e em repouso.</li>
+    <li>Row Level Security (RLS) no banco de dados, garantindo isolamento entre condomínios.</li>
+    <li>Autenticação obrigatória para acesso ao sistema.</li>
+  </ul>
 
-  <h2>8. Contato</h2>
+  <h2>10. Contato</h2>
   <p>Em caso de dúvidas sobre esta política, entre em contato:</p>
   <ul>
-    <li>Email: <a href="mailto:luisz.braghin@hotmail.com">luisz.braghin@hotmail.com</a></li>
+    <li>E-mail: <a href="mailto:contato@portariago.app">contato@portariago.app</a></li>
+    <li>Desenvolvedor: TimeSavingTech</li>
   </ul>
 
 </body>
