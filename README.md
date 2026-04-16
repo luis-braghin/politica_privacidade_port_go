@@ -1,46 +1,40 @@
-# Politica de Privacidade - Port Go
+# Política de Privacidade — Port Go
 
-Paginas legais estaticas do aplicativo **Port Go** (Portaria Go). Contém a politica de privacidade, termos de uso e instrucoes para exclusao de conta, exigidos pelas lojas de aplicativos (App Store / Google Play).
+Static legal pages for the **Portaria Go** app (condominium management system). Serves the privacy policy required by app stores (Google Play / App Store) and LGPD compliance.
 
-## Stack
+## Tech Stack
 
-- HTML estatico (sem frameworks, sem build)
-- CSS inline
-- Deploy via Vercel
+- Plain HTML with inline CSS
+- No frameworks, no build step
+- Deployed via Vercel
 
-## Pre-requisitos
+## Running Locally
 
-Nenhum. Os arquivos sao HTML puro e podem ser abertos diretamente no navegador.
-
-Para deploy na Vercel, e necessario ter uma conta configurada e o CLI da Vercel instalado (opcional).
-
-## Como rodar localmente
-
-Basta abrir o arquivo `index.html` no navegador:
+Open `index.html` directly in a browser, or use a local HTTP server:
 
 ```bash
-# Ou usar qualquer servidor HTTP local
 npx serve .
 ```
 
-## Como fazer deploy
+## Deploy
 
-O projeto esta configurado para deploy automatico na Vercel. O arquivo `vercel.json` (quando presente) controla as configuracoes de roteamento.
+Push to `main` — Vercel auto-deploys on every commit.
+
+To deploy manually:
 
 ```bash
 vercel --prod
 ```
 
-## Estrutura de pastas
+## Features
+
+- **Privacy Policy** (`index.html`) — covers data collection, usage, AI assistant (OpenAI + Anthropic), push notifications (FCM), data sharing, storage (Supabase/PostgreSQL), account deletion, and user rights (LGPD)
+
+## Folder Structure
 
 ```
 politica_privacidade_port_go/
-├── index.html          # Pagina principal (Politica de Privacidade)
-└── .git/
+├── CLAUDE.md       # Project instructions for Claude Code
+├── README.md
+└── index.html      # Privacy policy page (pt-BR)
 ```
-
-> **Nota:** De acordo com a especificacao do projeto, as paginas `privacidade.html`, `termos.html` e `exclusao-de-conta.html` podem estar consolidadas em `index.html` ou serem adicionadas futuramente.
-
-## Status
-
-**Producao** -- Paginas publicadas e acessiveis via Vercel.
