@@ -28,7 +28,16 @@ vercel --prod
 
 ## Features
 
-- **Privacy Policy** (`index.html`) — covers data collection, usage, AI assistant (OpenAI + Anthropic), push notifications (FCM), data sharing, storage (Supabase/PostgreSQL), account deletion, and user rights (LGPD)
+- **Privacy Policy** (`index.html`, pt-BR) — covers:
+  - Data collected: name, phone number, apartment/tower, FCM push token
+  - Data usage: WhatsApp notifications, push notifications, doorman panel identification
+  - AI assistant: semantic search via OpenAI embeddings + response generation via Anthropic (Claude) — no personal data transmitted
+  - Push notifications via Firebase Cloud Messaging (Google)
+  - Data sharing: Evolution API/WhatsApp, Firebase only; no data sold or rented
+  - Storage: Supabase/PostgreSQL with encryption at rest/transit and Row Level Security
+  - Account and data deletion: email request, 7-business-day SLA
+  - User rights under LGPD (Brazilian data protection law)
+  - Security measures: HTTPS/TLS, RLS, mandatory authentication
 
 ## Folder Structure
 
